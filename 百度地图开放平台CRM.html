@@ -10276,6 +10276,7 @@
             const [detailDrawerVisible, setDetailDrawerVisible] = useState(false); // 详情抽屉状态
             const [currentDetailRecord, setCurrentDetailRecord] = useState(null); // 当前查看详情的记录
             const [detailTab, setDetailTab] = useState('callDetail'); // 详情抽屉选项卡：'callDetail' 通话详情, 'customerVar' 通话总结
+            const [selectedQuestionCategory, setSelectedQuestionCategory] = useState('功能咨询'); // 用户问题统计的选中分类
             
             // 图表初始化 useEffect
             useEffect(() => {
@@ -10286,52 +10287,35 @@
                         initIndustryFeedback();
                         initScenarioBarChart();
                         initScenarioFeedback();
-                        initUserQuestionsChart();
+                        initUserQuestionsChart(selectedQuestionCategory);
                         initCompetitorMentionsChart();
                         initCompetitorComparisonCards();
                     }, 100);
                 }
-            }, [activeTab]);
+            }, [activeTab, selectedQuestionCategory]);
 
-            // 行业分布 Top 10 空心饼图 - 随机生成10个行业数据
+            // 行业分布 Top 10 空心饼图 - 固定数据
             const initIndustryPieChart = () => {
                 const chartDom = document.getElementById('industryPieChart');
                 if (!chartDom) return;
                 
                 const myChart = echarts.init(chartDom);
                 
-                // 随机生成10个行业及数据
-                const industries = [
-                    '物流运输', '餐饮外卖', '房地产', '交通出行', 
-                    '教育培训', '医疗健康', '金融服务', '零售电商', 
-                    '智能制造', '文化娱乐'
-                ];
-                
-                // 生成随机数据（确保总和为100，且都是整数）
-                const generateRandomData = () => {
-                    let values = [];
-                    let remaining = 100;
-                    for (let i = 0; i < 9; i++) {
-                        const value = Math.floor(Math.random() * (remaining / (10 - i)) * 1.5);
-                        values.push(value);
-                        remaining -= values[i];
-                    }
-                    values.push(remaining);
-                    return values;
-                };
-                
-                const values = generateRandomData();
                 const colors = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#5d7092'];
                 
-                // 创建数据并按值从高到低排序（顺时针排列）
-                let data = industries.map((name, index) => ({
-                    value: values[index],
-                    name: name,
-                    itemStyle: { color: colors[index] }
-                }));
-                
-                // 按数值从高到低排序
-                data.sort((a, b) => b.value - a.value);
+                // 固定数据（已按值从高到低排序）
+                const data = [
+                    { name: '物流运输', value: 18, itemStyle: { color: colors[0] } },
+                    { name: '餐饮外卖', value: 15, itemStyle: { color: colors[1] } },
+                    { name: '交通出行', value: 13, itemStyle: { color: colors[2] } },
+                    { name: '零售电商', value: 12, itemStyle: { color: colors[3] } },
+                    { name: '房地产', value: 11, itemStyle: { color: colors[4] } },
+                    { name: '金融服务', value: 10, itemStyle: { color: colors[5] } },
+                    { name: '教育培训', value: 8, itemStyle: { color: colors[6] } },
+                    { name: '医疗健康', value: 7, itemStyle: { color: colors[7] } },
+                    { name: '智能制造', value: 4, itemStyle: { color: colors[8] } },
+                    { name: '文化娱乐', value: 2, itemStyle: { color: colors[9] } }
+                ];
                 
                 const option = {
                     tooltip: {
@@ -10861,14 +10845,24 @@
                     '数据更新有时滞后'
                 ];
                 
-                // 为每个反馈生成随机提及次数 (3-35)
-                const data = negativeFeedbacks.map(name => ({
-                    name: name,
-                    value: Math.floor(Math.random() * 32) + 3
-                }));
-                
-                // 按提及次数排序
-                data.sort((a, b) => b.value - a.value);
+                // 固定的提及次数数据（已按次数排序）
+                const data = [
+                    { name: '点击页面刷新有延迟', value: 28 },
+                    { name: '批量接口超时问题', value: 25 },
+                    { name: '偶尔出现定位偏移', value: 22 },
+                    { name: '没有自定义购买套餐的功能', value: 20 },
+                    { name: '价格对小团队偏高', value: 18 },
+                    { name: '文档部分内容不够详细', value: 16 },
+                    { name: '室内定位精度待提升', value: 15 },
+                    { name: '开发者后台加载慢', value: 14 },
+                    { name: '海外地图数据覆盖不全', value: 12 },
+                    { name: '部分API返回格式不统一', value: 11 },
+                    { name: '缺少夜间模式样式', value: 10 },
+                    { name: '路径规划偶有绕路', value: 9 },
+                    { name: '数据更新有时滞后', value: 8 },
+                    { name: '缺少实时路况告警', value: 7 },
+                    { name: '缺少离线地图功能', value: 5 }
+                ];
                 
                 // 渲染标签矩阵 - 添加固定高度和滚动
                 container.innerHTML = `
@@ -10937,52 +10931,97 @@
             };
 
             // 用户问题统计条形图
-            const initUserQuestionsChart = () => {
+            const initUserQuestionsChart = (category = '功能咨询') => {
                 const chartDom = document.getElementById('userQuestionsChart');
                 if (!chartDom) return;
                 
                 const myChart = echarts.init(chartDom);
                 
-                // 用户常见问题和机器人无法解答的问题（扩展到20条）
-                const questions = [
-                    '能否提供离线地图包下载？',
-                    '如何申请更高的并发配额？',
-                    '路径规划支持实时路况吗？',
-                    '是否支持海外地图数据？',
-                    '可以定制化地图样式吗？',
-                    '如何处理坐标系转换问题？',
-                    '批量请求有速率限制吗？',
-                    '提供技术对接支持吗？',
-                    '室内定位精度能达到多少？',
-                    '是否有按需付费的套餐？',
-                    '地图数据更新频率是多久？',
-                    '支持哪些开发语言的SDK？',
-                    '如何集成到小程序中？',
-                    '有没有免费试用期？',
-                    '能否导出历史轨迹数据？',
-                    '如何实现电子围栏功能？',
-                    '地图渲染性能如何优化？',
-                    '支持多点路径规划吗？',
-                    '如何处理大批量标点？',
-                    'API调用失败如何排查？'
-                ];
+                // 按分类组织问题数据
+                const questionsByCategory = {
+                    '功能咨询': [
+                        '能否提供离线地图包下载？',
+                        '是否支持海外地图数据？',
+                        '可以定制化地图样式吗？',
+                        '室内定位精度能达到多少？',
+                        '地图数据更新频率是多久？',
+                        '支持哪些开发语言的SDK？',
+                        '如何集成到小程序中？',
+                        '能否导出历史轨迹数据？',
+                        '如何实现电子围栏功能？',
+                        '支持多点路径规划吗？',
+                        '如何处理大批量标点？',
+                        '路径规划支持实时路况吗？',
+                        '地图标注支持自定义图标吗？',
+                        '如何实现地图打印功能？',
+                        '支持3D建筑模型吗？'
+                    ],
+                    '技术问题': [
+                        '如何处理坐标系转换问题？',
+                        'API调用失败如何排查？',
+                        '地图渲染性能如何优化？',
+                        '如何解决跨域请求问题？',
+                        '地图加载缓慢怎么办？',
+                        '移动端适配有什么注意事项？',
+                        '如何处理内存泄漏问题？',
+                        'WebGL模式如何开启？',
+                        '地图事件监听失效怎么办？',
+                        '如何调试地图API？',
+                        '异步加载地图的最佳实践？',
+                        '地图缩放级别如何控制？'
+                    ],
+                    '计费相关': [
+                        '如何申请更高的并发配额？',
+                        '是否有按需付费的套餐？',
+                        '有没有免费试用期？',
+                        '批量请求有速率限制吗？',
+                        '超出配额如何计费？',
+                        '企业版和标准版有什么区别？',
+                        '如何查看API调用量统计？',
+                        '续费后配额立即生效吗？',
+                        '支持按月付费吗？',
+                        '如何申请发票？'
+                    ],
+                    '服务支持': [
+                        '提供技术对接支持吗？',
+                        '技术支持响应时间多久？',
+                        '如何联系技术支持团队？',
+                        '是否提供上门培训服务？',
+                        '有开发者社区吗？',
+                        '提供示例代码吗？',
+                        '如何提交功能建议？',
+                        '有产品更新通知渠道吗？',
+                        '是否提供SLA保障？',
+                        '支持哪些沟通方式？'
+                    ]
+                };
                 
-                // 为每个问题生成随机提及次数 (8-60)
-                const values = questions.map(() => Math.floor(Math.random() * 52) + 8);
+                // 获取当前分类的问题
+                const questions = questionsByCategory[category] || [];
+                
+                // 固定的提及次数数据（每个分类独立的数据）
+                const fixedValuesByCategory = {
+                    '功能咨询': [45, 42, 38, 35, 32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12],
+                    '技术问题': [50, 46, 40, 36, 32, 28, 25, 22, 19, 16, 14, 11],
+                    '计费相关': [48, 44, 38, 34, 30, 26, 22, 18, 15, 12],
+                    '服务支持': [52, 47, 42, 37, 33, 28, 24, 20, 16, 13]
+                };
+                
+                const values = fixedValuesByCategory[category] || [];
                 const combined = questions.map((name, index) => ({
                     name: name,
-                    value: values[index]
+                    value: values[index] || 10
                 }));
                 
                 // 按值从高到低排序
                 combined.sort((a, b) => b.value - a.value);
                 
-                // 取前20个问题
-                const top20 = combined.slice(0, 20);
+                // 取前15个问题
+                const top15 = combined.slice(0, 15);
                 
                 // 因为ECharts横向条形图Y轴是从下往上的，所以需要反转数组让最大值显示在最上面
-                const sortedQuestions = top20.map(item => item.name).reverse();
-                const sortedValues = top20.map(item => item.value).reverse();
+                const sortedQuestions = top15.map(item => item.name).reverse();
+                const sortedValues = top15.map(item => item.value).reverse();
                 
                 const option = {
                     tooltip: {
@@ -11109,26 +11148,16 @@
                 
                 const myChart = echarts.init(chartDom);
                 
-                // 竞品地图产品
-                const competitors = [
-                    '高德地图',
-                    '腾讯地图',
-                    '谷歌地图',
-                    '四维图新',
-                    '凯立德',
-                    '苹果地图',
-                    '搜狗地图'
+                // 固定的竞品提及次数数据（已按次数排序）
+                const combined = [
+                    { name: '高德地图', value: 68 },
+                    { name: '腾讯地图', value: 52 },
+                    { name: '谷歌地图', value: 45 },
+                    { name: '四维图新', value: 32 },
+                    { name: '苹果地图', value: 28 },
+                    { name: '凯立德', value: 20 },
+                    { name: '搜狗地图', value: 15 }
                 ];
-                
-                // 为每个竞品生成随机提及次数 (10-80)
-                const values = competitors.map(() => Math.floor(Math.random() * 70) + 10);
-                const combined = competitors.map((name, index) => ({
-                    name: name,
-                    value: values[index]
-                }));
-                
-                // 按值从高到低排序
-                combined.sort((a, b) => b.value - a.value);
                 
                 // 因为ECharts横向条形图Y轴是从下往上的，所以需要反转数组让最大值显示在最上面
                 const sortedCompetitors = combined.map(item => item.name).reverse();
@@ -11858,36 +11887,26 @@
                 document.head.appendChild(style);
             };
 
-            // 应用场景 Top 10 条形图 - 随机生成场景数据
+            // 应用场景 Top 10 条形图 - 固定数据
             const initScenarioBarChart = () => {
                 const chartDom = document.getElementById('scenarioBarChart');
                 if (!chartDom) return;
                 
                 const myChart = echarts.init(chartDom);
                 
-                // 随机生成10个地图应用场景
-                const scenarios = [
-                    '物流配送路线规划',
-                    '共享单车位置追踪',
-                    '外卖配送实时导航',
-                    '智慧停车场导引',
-                    '网约车乘客定位',
-                    '快递末端配送优化',
-                    '园区内部导航服务',
-                    '景区游览路线推荐',
-                    '商场室内定位导购',
-                    '企业资产位置管理'
+                // 固定数据（已按值从高到低排序）
+                const combined = [
+                    { name: '物流配送路线规划', value: 85 },
+                    { name: '外卖配送实时导航', value: 78 },
+                    { name: '网约车乘客定位', value: 72 },
+                    { name: '共享单车位置追踪', value: 65 },
+                    { name: '快递末端配送优化', value: 58 },
+                    { name: '智慧停车场导引', value: 52 },
+                    { name: '景区游览路线推荐', value: 45 },
+                    { name: '园区内部导航服务', value: 38 },
+                    { name: '商场室内定位导购', value: 32 },
+                    { name: '企业资产位置管理', value: 28 }
                 ];
-                
-                // 生成随机数据并排序（由高到低）
-                const values = scenarios.map(() => Math.floor(Math.random() * 80) + 20);
-                const combined = scenarios.map((name, index) => ({
-                    name: name,
-                    value: values[index]
-                }));
-                
-                // 按值从高到低排序
-                combined.sort((a, b) => b.value - a.value);
                 
                 // 因为ECharts横向条形图Y轴是从下往上的，所以需要反转数组让最大值显示在最上面
                 const sortedScenarios = combined.map(item => item.name).reverse();
@@ -12083,14 +12102,51 @@
                     'https://www2.cs.uic.edu/~i101/SoundFiles/PinkPanther60.wav'
                 ];
                 
+                // 固定的30条外呼记录数据
+                const fixedData = [
+                    { isConnected: true, hasRecording: true, taskIdx: 0, robotIdx: 0, sms: '是', day: 15, hour: 10, min: 12, sec: 8, duration: '2分18秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 1, robotIdx: 1, sms: '否', day: 16, hour: 14, min: 30, sec: 15, duration: '0分0秒', reason: '无人接听' },
+                    { isConnected: true, hasRecording: true, taskIdx: 2, robotIdx: 0, sms: '是', day: 17, hour: 9, min: 45, sec: 22, duration: '3分42秒', reason: '-' },
+                    { isConnected: true, hasRecording: false, taskIdx: 0, robotIdx: 2, sms: '否', day: 18, hour: 16, min: 20, sec: 35, duration: '1分55秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 3, robotIdx: 1, sms: '是', day: 19, hour: 11, min: 15, sec: 40, duration: '0分0秒', reason: '关机' },
+                    { isConnected: true, hasRecording: true, taskIdx: 1, robotIdx: 0, sms: '否', day: 20, hour: 15, min: 30, sec: 18, duration: '4分12秒', reason: '-' },
+                    { isConnected: true, hasRecording: true, taskIdx: 0, robotIdx: 1, sms: '是', day: 21, hour: 13, min: 45, sec: 25, duration: '2分38秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 2, robotIdx: 0, sms: '否', day: 22, hour: 10, min: 10, sec: 50, duration: '0分0秒', reason: '停机' },
+                    { isConnected: true, hasRecording: true, taskIdx: 3, robotIdx: 2, sms: '是', day: 23, hour: 14, min: 25, sec: 12, duration: '3分20秒', reason: '-' },
+                    { isConnected: true, hasRecording: false, taskIdx: 1, robotIdx: 1, sms: '否', day: 24, hour: 16, min: 50, sec: 30, duration: '1分45秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 0, robotIdx: 0, sms: '是', day: 25, hour: 9, min: 30, sec: 8, duration: '0分0秒', reason: '占线' },
+                    { isConnected: true, hasRecording: true, taskIdx: 2, robotIdx: 1, sms: '否', day: 26, hour: 11, min: 40, sec: 22, duration: '2分55秒', reason: '-' },
+                    { isConnected: true, hasRecording: true, taskIdx: 1, robotIdx: 0, sms: '是', day: 27, hour: 15, min: 15, sec: 45, duration: '4分8秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 3, robotIdx: 2, sms: '否', day: 28, hour: 10, min: 25, sec: 33, duration: '0分0秒', reason: '无人接听' },
+                    { isConnected: true, hasRecording: true, taskIdx: 0, robotIdx: 1, sms: '是', day: 29, hour: 14, min: 5, sec: 18, duration: '3分15秒', reason: '-' },
+                    { isConnected: true, hasRecording: false, taskIdx: 2, robotIdx: 0, sms: '否', day: 15, hour: 16, min: 35, sec: 50, duration: '2分5秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 1, robotIdx: 1, sms: '是', day: 16, hour: 9, min: 20, sec: 15, duration: '0分0秒', reason: '关机' },
+                    { isConnected: true, hasRecording: true, taskIdx: 3, robotIdx: 2, sms: '否', day: 17, hour: 13, min: 50, sec: 28, duration: '3分48秒', reason: '-' },
+                    { isConnected: true, hasRecording: true, taskIdx: 0, robotIdx: 0, sms: '是', day: 18, hour: 11, min: 10, sec: 42, duration: '2分32秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 2, robotIdx: 1, sms: '否', day: 19, hour: 15, min: 45, sec: 20, duration: '0分0秒', reason: '停机' },
+                    { isConnected: true, hasRecording: true, taskIdx: 1, robotIdx: 0, sms: '是', day: 20, hour: 10, min: 30, sec: 55, duration: '4分22秒', reason: '-' },
+                    { isConnected: true, hasRecording: false, taskIdx: 3, robotIdx: 2, sms: '否', day: 21, hour: 14, min: 15, sec: 10, duration: '1分58秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 0, robotIdx: 1, sms: '是', day: 22, hour: 16, min: 40, sec: 35, duration: '0分0秒', reason: '占线' },
+                    { isConnected: true, hasRecording: true, taskIdx: 2, robotIdx: 0, sms: '否', day: 23, hour: 9, min: 55, sec: 18, duration: '3分28秒', reason: '-' },
+                    { isConnected: true, hasRecording: true, taskIdx: 1, robotIdx: 1, sms: '是', day: 24, hour: 13, min: 20, sec: 48, duration: '2分42秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 3, robotIdx: 0, sms: '否', day: 25, hour: 11, min: 35, sec: 25, duration: '0分0秒', reason: '无人接听' },
+                    { isConnected: true, hasRecording: true, taskIdx: 0, robotIdx: 2, sms: '是', day: 26, hour: 15, min: 50, sec: 12, duration: '3分52秒', reason: '-' },
+                    { isConnected: true, hasRecording: false, taskIdx: 2, robotIdx: 1, sms: '否', day: 27, hour: 10, min: 5, sec: 38, duration: '2分18秒', reason: '-' },
+                    { isConnected: false, hasRecording: false, taskIdx: 1, robotIdx: 0, sms: '是', day: 28, hour: 14, min: 25, sec: 52, duration: '0分0秒', reason: '关机' },
+                    { isConnected: true, hasRecording: true, taskIdx: 3, robotIdx: 1, sms: '否', day: 29, hour: 16, min: 10, sec: 5, duration: '4分5秒', reason: '-' }
+                ];
+                
                 for (let i = 0; i < 30; i++) {
-                    const isConnected = Math.random() > 0.3;
-                    const hasRecording = Math.random() > 0.3;
-                    
-                    // 确保关键字段不为空
+                    const data = fixedData[i];
                     const callId = `${2026020031 + i}`;
                     const leadId = `${2026010155 + i}`;
                     const uid = `${1001234598 + i}`;
+                    
+                    const startTime = `2026/01/${data.day} ${data.hour}:${data.min.toString().padStart(2, '0')}:${data.sec.toString().padStart(2, '0')}`;
+                    const endHour = data.hour;
+                    const endMin = data.min + parseInt(data.duration.split('分')[0]);
+                    const endSec = data.sec + parseInt(data.duration.split('分')[1].replace('秒', ''));
+                    const endTime = `2026/01/${data.day} ${endHour}:${(endMin % 60).toString().padStart(2, '0')}:${(endSec % 60).toString().padStart(2, '0')}`;
                     
                     extraRecords.push({
                         key: `extra_record_${i + 1}`,
@@ -12098,16 +12154,16 @@
                         leadId: leadId,
                         uid: uid,
                         contactName: names[i] || `联系人${i + 1}`,
-                        calleeNumber: `${Math.floor(Math.random() * 9000 + 1000)}****${Math.floor(Math.random() * 9000 + 1000)}`,
-                        taskName: tasks[Math.floor(Math.random() * tasks.length)] || '默认外呼任务',
-                        robotName: robots[Math.floor(Math.random() * robots.length)] || '默认机器人',
-                        smsTriggered: Math.random() > 0.5 ? '是' : '否',
-                        callStartTime: `2026/01/${Math.floor(Math.random() * 30) + 1} ${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`,
-                        callDuration: `${Math.floor(Math.random() * 5)}分${Math.floor(Math.random() * 60)}秒`,
-                        callEndTime: `2026/01/${Math.floor(Math.random() * 30) + 1} ${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`,
-                        connectStatus: isConnected ? '已接通' : '未接通',
-                        noConnectReason: isConnected ? '-' : reasons[Math.floor(Math.random() * reasons.length)] || '未知原因',
-                        recordingUrl: hasRecording && isConnected ? audioUrls[i % audioUrls.length] : '',
+                        calleeNumber: `${1380 + i}****${1234 + i}`,
+                        taskName: tasks[data.taskIdx] || '默认外呼任务',
+                        robotName: robots[data.robotIdx] || '默认机器人',
+                        smsTriggered: data.sms,
+                        callStartTime: startTime,
+                        callDuration: data.duration,
+                        callEndTime: endTime,
+                        connectStatus: data.isConnected ? '已接通' : '未接通',
+                        noConnectReason: data.reason,
+                        recordingUrl: data.hasRecording && data.isConnected ? audioUrls[i % audioUrls.length] : '',
                         aiTags: {
                             businessScene: '测试场景',
                             overallIntent: '中等',
@@ -12921,11 +12977,10 @@
                             }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                     <span style={{ fontSize: '14px', color: '#262626', fontWeight: 500 }}>日期：</span>
-                                    <antd.DatePicker 
-                                        picker="month"
-                                        placeholder="选择月份"
-                                        style={{ width: '180px' }}
-                                        format="YYYY年MM月"
+                                    <RangePicker
+                                        style={{ width: '280px' }}
+                                        placeholder={['开始日期', '结束日期']}
+                                        format="YYYY-MM-DD"
                                     />
                                 </div>
                             </div>
@@ -12981,9 +13036,80 @@
                             {/* 用户问题统计 */}
                             <div style={{ marginBottom: '24px' }}>
                                 <h3 style={{ fontSize: '16px', fontWeight: 500, marginBottom: '16px', color: '#262626' }}>用户问题统计</h3>
-                                <div style={{ background: '#fff', padding: '16px', borderRadius: '8px', border: '1px solid #f0f0f0', height: '400px', display: 'flex', flexDirection: 'column' }}>
-                                    <h4 style={{ fontSize: '14px', fontWeight: 500, marginBottom: '12px', color: '#595959', flexShrink: 0 }}>高频问题</h4>
-                                    <div id="userQuestionsChart" style={{ width: '100%', flex: 1, minHeight: 0 }}></div>
+                                <div style={{ background: '#fff', padding: '16px', borderRadius: '8px', border: '1px solid #f0f0f0', height: '400px', display: 'flex', gap: '16px' }}>
+                                    {/* 左侧问题分类列表 */}
+                                    <div style={{ width: '200px', flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
+                                        <h4 style={{ fontSize: '14px', fontWeight: 500, marginBottom: '12px', color: '#595959' }}>问题分类</h4>
+                                        <div style={{ 
+                                            flex: 1, 
+                                            overflowY: 'auto', 
+                                            overflowX: 'hidden',
+                                            border: '1px solid #f0f0f0',
+                                            borderRadius: '4px'
+                                        }}>
+                                            {[
+                                                { key: '功能咨询', count: 15 },
+                                                { key: '技术问题', count: 12 },
+                                                { key: '计费相关', count: 10 },
+                                                { key: '服务支持', count: 10 }
+                                            ].map(category => (
+                                                <div
+                                                    key={category.key}
+                                                    onClick={() => {
+                                                        setSelectedQuestionCategory(category.key);
+                                                        initUserQuestionsChart(category.key);
+                                                    }}
+                                                    style={{
+                                                        padding: '12px 16px',
+                                                        cursor: 'pointer',
+                                                        borderBottom: '1px solid #f0f0f0',
+                                                        backgroundColor: selectedQuestionCategory === category.key ? '#e6f7ff' : '#fff',
+                                                        borderLeft: selectedQuestionCategory === category.key ? '3px solid #1890ff' : '3px solid transparent',
+                                                        transition: 'all 0.2s',
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        alignItems: 'center'
+                                                    }}
+                                                    onMouseEnter={(e) => {
+                                                        if (selectedQuestionCategory !== category.key) {
+                                                            e.currentTarget.style.backgroundColor = '#fafafa';
+                                                        }
+                                                    }}
+                                                    onMouseLeave={(e) => {
+                                                        if (selectedQuestionCategory !== category.key) {
+                                                            e.currentTarget.style.backgroundColor = '#fff';
+                                                        }
+                                                    }}
+                                                >
+                                                    <span style={{ 
+                                                        fontSize: '13px', 
+                                                        color: selectedQuestionCategory === category.key ? '#1890ff' : '#262626',
+                                                        fontWeight: selectedQuestionCategory === category.key ? 500 : 400
+                                                    }}>
+                                                        {category.key}
+                                                    </span>
+                                                    <span style={{ 
+                                                        fontSize: '12px', 
+                                                        color: '#8c8c8c',
+                                                        backgroundColor: selectedQuestionCategory === category.key ? '#bae7ff' : '#f0f0f0',
+                                                        padding: '2px 8px',
+                                                        borderRadius: '10px',
+                                                        fontWeight: 500
+                                                    }}>
+                                                        {category.count}
+                                                    </span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    
+                                    {/* 右侧图表区域 */}
+                                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+                                        <h4 style={{ fontSize: '14px', fontWeight: 500, marginBottom: '12px', color: '#595959' }}>
+                                            高频问题 - {selectedQuestionCategory}
+                                        </h4>
+                                        <div id="userQuestionsChart" style={{ width: '100%', flex: 1, minHeight: 0 }}></div>
+                                    </div>
                                 </div>
                             </div>
 
