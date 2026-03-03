@@ -3650,13 +3650,19 @@
                                                     {/* 意向标签 */}
                                                     <div style={{ marginBottom: '24px' }}>
                                                         <h4 style={{ fontSize: '14px', fontWeight: 600, color: '#262626', marginBottom: '12px' }}>意向标签</h4>
-                                                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                                            <Tag color="green">{selectedOutboundCall.aiTags?.overallIntent || '高'}意向</Tag>
-                                                            <Tag>{selectedOutboundCall.aiTags?.industry || '未知行业'}</Tag>
-                                                            {selectedOutboundCall.aiTags?.businessScene && (
-                                                                <Tag color="blue">{selectedOutboundCall.aiTags.businessScene}</Tag>
-                                                            )}
-                                                        </div>
+                                                        {selectedOutboundCall.connectStatus === '未接通' ? (
+                                                            <div style={{ fontSize: '13px', color: '#8c8c8c', fontStyle: 'italic', padding: '12px 0' }}>
+                                                                暂无标签信息
+                                                            </div>
+                                                        ) : (
+                                                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                                                <Tag color="green">{selectedOutboundCall.aiTags?.overallIntent || '高'}意向</Tag>
+                                                                <Tag>{selectedOutboundCall.aiTags?.industry || '未知行业'}</Tag>
+                                                                {selectedOutboundCall.aiTags?.businessScene && (
+                                                                    <Tag color="blue">{selectedOutboundCall.aiTags.businessScene}</Tag>
+                                                                )}
+                                                            </div>
+                                                        )}
                                                     </div>
 
                                                 </div>
@@ -10276,7 +10282,7 @@
             const [detailDrawerVisible, setDetailDrawerVisible] = useState(false); // 详情抽屉状态
             const [currentDetailRecord, setCurrentDetailRecord] = useState(null); // 当前查看详情的记录
             const [detailTab, setDetailTab] = useState('callDetail'); // 详情抽屉选项卡：'callDetail' 通话详情, 'customerVar' 通话总结
-            const [selectedQuestionCategory, setSelectedQuestionCategory] = useState('功能咨询'); // 用户问题统计的选中分类
+            const [selectedQuestionCategory, setSelectedQuestionCategory] = useState('功能使用咨询'); // 用户问题统计的选中分类
             
             // 图表初始化 useEffect
             useEffect(() => {
@@ -10931,7 +10937,7 @@
             };
 
             // 用户问题统计条形图
-            const initUserQuestionsChart = (category = '功能咨询') => {
+            const initUserQuestionsChart = (category = '功能使用咨询') => {
                 const chartDom = document.getElementById('userQuestionsChart');
                 if (!chartDom) return;
                 
@@ -10939,7 +10945,7 @@
                 
                 // 按分类组织问题数据
                 const questionsByCategory = {
-                    '功能咨询': [
+                    '功能使用咨询': [
                         '能否提供离线地图包下载？',
                         '是否支持海外地图数据？',
                         '可以定制化地图样式吗？',
@@ -10956,7 +10962,7 @@
                         '如何实现地图打印功能？',
                         '支持3D建筑模型吗？'
                     ],
-                    '技术问题': [
+                    'API与技术问题': [
                         '如何处理坐标系转换问题？',
                         'API调用失败如何排查？',
                         '地图渲染性能如何优化？',
@@ -10982,7 +10988,7 @@
                         '支持按月付费吗？',
                         '如何申请发票？'
                     ],
-                    '服务支持': [
+                    '售后服务支持': [
                         '提供技术对接支持吗？',
                         '技术支持响应时间多久？',
                         '如何联系技术支持团队？',
@@ -11001,10 +11007,10 @@
                 
                 // 固定的提及次数数据（每个分类独立的数据）
                 const fixedValuesByCategory = {
-                    '功能咨询': [45, 42, 38, 35, 32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12],
-                    '技术问题': [50, 46, 40, 36, 32, 28, 25, 22, 19, 16, 14, 11],
-                    '计费相关': [48, 44, 38, 34, 30, 26, 22, 18, 15, 12],
-                    '服务支持': [52, 47, 42, 37, 33, 28, 24, 20, 16, 13]
+                    '功能使用咨询': [45, 28, 25, 21, 19, 16, 12, 12, 12, 8, 7, 7, 6, 5, 3],
+                    'API与技术问题': [50, 42, 28, 26, 22, 22, 20, 19, 19, 14, 10, 6],
+                    '计费相关': [48, 44, 34, 33, 28, 26, 16, 16, 15, 12],
+                    '售后服务支持': [52, 47, 42, 37, 33, 28, 24, 20, 16, 13]
                 };
                 
                 const values = fixedValuesByCategory[category] || [];
@@ -11044,8 +11050,8 @@
                             yAxisIndex: 0,
                             show: true,
                             right: '1%',
-                            start: 0,
-                            end: 50,
+                            start: 50,
+                            end: 100,
                             width: 20,
                             handleSize: '100%',
                             showDetail: false,
@@ -11072,8 +11078,8 @@
                         {
                             type: 'inside',
                             yAxisIndex: 0,
-                            start: 0,
-                            end: 50,
+                            start: 50,
+                            end: 100,
                             zoomOnMouseWheel: false,
                             moveOnMouseWheel: true,
                             preventDefaultMouseMove: false
@@ -11150,13 +11156,13 @@
                 
                 // 固定的竞品提及次数数据（已按次数排序）
                 const combined = [
-                    { name: '高德地图', value: 68 },
-                    { name: '腾讯地图', value: 52 },
-                    { name: '谷歌地图', value: 45 },
-                    { name: '四维图新', value: 32 },
-                    { name: '苹果地图', value: 28 },
-                    { name: '凯立德', value: 20 },
-                    { name: '搜狗地图', value: 15 }
+                    { name: '高德地图', value: 66 },
+                    { name: '腾讯地图', value: 42 },
+                    { name: '谷歌地图', value: 22 },
+                    { name: '四维图新', value: 14 },
+                    { name: '苹果地图', value: 8 },
+                    { name: '凯立德', value: 6 },
+                    { name: '搜狗地图', value: 5 }
                 ];
                 
                 // 因为ECharts横向条形图Y轴是从下往上的，所以需要反转数组让最大值显示在最上面
@@ -11897,15 +11903,15 @@
                 // 固定数据（已按值从高到低排序）
                 const combined = [
                     { name: '物流配送路线规划', value: 85 },
-                    { name: '外卖配送实时导航', value: 78 },
-                    { name: '网约车乘客定位', value: 72 },
+                    { name: '外卖配送实时导航', value: 82 },
+                    { name: '网约车乘客定位', value: 66 },
                     { name: '共享单车位置追踪', value: 65 },
                     { name: '快递末端配送优化', value: 58 },
                     { name: '智慧停车场导引', value: 52 },
                     { name: '景区游览路线推荐', value: 45 },
-                    { name: '园区内部导航服务', value: 38 },
-                    { name: '商场室内定位导购', value: 32 },
-                    { name: '企业资产位置管理', value: 28 }
+                    { name: '园区内部导航服务', value: 30 },
+                    { name: '商场室内定位导购', value: 22 },
+                    { name: '企业资产位置管理', value: 18 }
                 ];
                 
                 // 因为ECharts横向条形图Y轴是从下往上的，所以需要反转数组让最大值显示在最上面
@@ -12874,7 +12880,6 @@
                                                 <Option value="leadId">线索ID</Option>
                                                 <Option value="uid">UID</Option>
                                                 <Option value="contactName">联系人姓名</Option>
-                                                <Option value="calleeNumber">被叫号码</Option>
                                                 <Option value="robotName">外呼机器人</Option>
                                                 <Option value="taskName">外呼任务名称</Option>
                                             </Select>
@@ -13048,10 +13053,10 @@
                                             borderRadius: '4px'
                                         }}>
                                             {[
-                                                { key: '功能咨询', count: 15 },
-                                                { key: '技术问题', count: 12 },
+                                                { key: '功能使用咨询', count: 15 },
+                                                { key: 'API与技术问题', count: 12 },
                                                 { key: '计费相关', count: 10 },
-                                                { key: '服务支持', count: 10 }
+                                                { key: '售后服务支持', count: 10 }
                                             ].map(category => (
                                                 <div
                                                     key={category.key}
@@ -13428,13 +13433,19 @@
                                                 {/* 意向标签 */}
                                                 <div style={{ marginBottom: '24px' }}>
                                                     <h4 style={{ fontSize: '14px', fontWeight: 600, color: '#262626', marginBottom: '12px' }}>意向标签</h4>
-                                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                                        <Tag color="green">{currentDetailRecord.aiTags?.overallIntent || '高'}意向</Tag>
-                                                        <Tag>{currentDetailRecord.aiTags?.industry || '未知行业'}</Tag>
-                                                        {currentDetailRecord.aiTags?.businessScene && (
-                                                            <Tag color="blue">{currentDetailRecord.aiTags.businessScene}</Tag>
-                                                        )}
-                                                    </div>
+                                                    {currentDetailRecord.connectStatus === '未接通' ? (
+                                                        <div style={{ fontSize: '13px', color: '#8c8c8c', fontStyle: 'italic', padding: '12px 0' }}>
+                                                            暂无标签信息
+                                                        </div>
+                                                    ) : (
+                                                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                                            <Tag color="green">{currentDetailRecord.aiTags?.overallIntent || '高'}意向</Tag>
+                                                            <Tag>{currentDetailRecord.aiTags?.industry || '未知行业'}</Tag>
+                                                            {currentDetailRecord.aiTags?.businessScene && (
+                                                                <Tag color="blue">{currentDetailRecord.aiTags.businessScene}</Tag>
+                                                            )}
+                                                        </div>
+                                                    )}
                                                 </div>
 
                                             </div>
