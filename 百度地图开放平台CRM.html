@@ -3677,69 +3677,91 @@
                                                             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>是否再次回电</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.callAgain || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.callAgain ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.callAgain}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>业务应用场景</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.businessScene || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.businessScene ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.businessScene}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>整体意向</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.overallIntent || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.overallIntent ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.overallIntent}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>竞品情况</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.competitorInfo || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.competitorInfo ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.competitorInfo}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>正面评价</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.positiveFeedback || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.positiveFeedback ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.positiveFeedback}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>负面评价</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.negativeFeedback || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.negativeFeedback ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.negativeFeedback}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>持续调用的原因</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.continueReason || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.continueReason ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.continueReason}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>项目情况</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.projectStatus || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.projectStatus ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.projectStatus}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>没有申请商用授权的原因</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.noCommercialReason || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.noCommercialReason ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.noCommercialReason}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>行业</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.industry || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.industry ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.industry}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                     <span style={{ color: '#8c8c8c', fontSize: '13px' }}>客户采购预算</span>
-                                                                    <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                        {selectedOutboundCall.aiTags?.budget || '未获取'}
-                                                                    </span>
+                                                                    {selectedOutboundCall.aiTags?.budget ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{selectedOutboundCall.aiTags?.budget}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                                 </div>
                                                             </div>
                                                         ) : (
@@ -10282,7 +10304,7 @@
             const [detailDrawerVisible, setDetailDrawerVisible] = useState(false); // 详情抽屉状态
             const [currentDetailRecord, setCurrentDetailRecord] = useState(null); // 当前查看详情的记录
             const [detailTab, setDetailTab] = useState('callDetail'); // 详情抽屉选项卡：'callDetail' 通话详情, 'customerVar' 通话总结
-            const [selectedQuestionCategory, setSelectedQuestionCategory] = useState('功能使用咨询'); // 用户问题统计的选中分类
+            const [selectedQuestionCategory, setSelectedQuestionCategory] = useState('全部'); // 用户问题统计的选中分类
             
             // 图表初始化 useEffect
             useEffect(() => {
@@ -10294,7 +10316,8 @@
                         initScenarioBarChart();
                         initScenarioFeedback();
                         initUserQuestionsChart(selectedQuestionCategory);
-                        initCompetitorMentionsChart();
+                        initChurnReasonsChart();
+                        initLossFlowChart();
                         initCompetitorComparisonCards();
                     }, 100);
                 }
@@ -10309,7 +10332,7 @@
                 
                 const colors = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#5d7092'];
                 
-                // 固定数据（已按值从高到低排序）
+                // 固定数据（已按值从高到低排序，最后一项"其他"固定置底）
                 const data = [
                     { name: '物流运输', value: 18, itemStyle: { color: colors[0] } },
                     { name: '餐饮外卖', value: 15, itemStyle: { color: colors[1] } },
@@ -10320,7 +10343,8 @@
                     { name: '教育培训', value: 8, itemStyle: { color: colors[6] } },
                     { name: '医疗健康', value: 7, itemStyle: { color: colors[7] } },
                     { name: '智能制造', value: 4, itemStyle: { color: colors[8] } },
-                    { name: '文化娱乐', value: 2, itemStyle: { color: colors[9] } }
+                    { name: '文化娱乐', value: 2, itemStyle: { color: colors[9] } },
+                    { name: '其他', value: 14, itemStyle: { color: '#bfbfbf' } }
                 ];
                 
                 const option = {
@@ -10381,8 +10405,9 @@
                 const container = document.getElementById('industryFeedback');
                 if (!container) return;
                 
-                // 15个行业
+                // 16个行业（全部 + 15个行业）
                 const industries = [
+                    '全部',
                     '物流运输', '餐饮外卖', '房地产', '交通出行', 
                     '教育培训', '医疗健康', '金融服务', '零售电商', 
                     '智能制造', '文化娱乐', '旅游酒店', '汽车服务',
@@ -10391,6 +10416,13 @@
                 
                 // 每个行业对应的正面反馈数据
                 const industryPositiveFeedbacks = {
+                    '全部': [
+                        { name: '路径规划算法准确', value: 45 },
+                        { name: '实时路况更新及时', value: 38 },
+                        { name: 'API稳定性高', value: 34 },
+                        { name: '定位响应速度快', value: 29 },
+                        { name: '地图数据覆盖全面', value: 25 }
+                    ],
                     '物流运输': [
                         { name: '路径规划算法准确', value: 45 },
                         { name: '实时路况更新及时', value: 38 },
@@ -10500,6 +10532,14 @@
                 
                 // 每个行业对应的负面反馈数据
                 const industryFeedbacks = {
+                    '全部': [
+                        { name: '路径规划偶有绕路', value: 28 },
+                        { name: '接口偶发超时问题', value: 22 },
+                        { name: '定位精度有待提升', value: 18 },
+                        { name: '地图数据更新不及时', value: 15 },
+                        { name: 'API并发限制偏低', value: 12 },
+                        { name: '文档说明不够详细', value: 10 }
+                    ],
                     '物流运输': [
                         { name: '路径规划偶有绕路', value: 28 },
                         { name: '批量接口超时问题', value: 22 },
@@ -10619,8 +10659,8 @@
                     ]
                 };
                 
-                // 初始状态：选中第一个行业
-                let selectedIndustry = industries[0];
+                // 初始状态：选中"全部"
+                let selectedIndustry = '全部';
                 let scrollPositions = {}; // 保存每个行业的滚动位置
                 
                 // 渲染函数
@@ -10945,6 +10985,20 @@
                 
                 // 按分类组织问题数据
                 const questionsByCategory = {
+                    '全部': [
+                        '能否提供离线地图包下载？',
+                        'API调用失败如何排查？',
+                        '如何申请更高的并发配额？',
+                        '提供技术对接支持吗？',
+                        '地图渲染性能如何优化？',
+                        '是否有按需付费的套餐？',
+                        '如何联系技术支持团队？',
+                        '如何处理坐标系转换问题？',
+                        '地图数据更新频率是多久？',
+                        '超出配额如何计费？',
+                        '是否提供SLA保障？',
+                        '支持多点路径规划吗？'
+                    ],
                     '功能使用咨询': [
                         '能否提供离线地图包下载？',
                         '是否支持海外地图数据？',
@@ -10976,7 +11030,7 @@
                         '异步加载地图的最佳实践？',
                         '地图缩放级别如何控制？'
                     ],
-                    '计费相关': [
+                    '计费与配额': [
                         '如何申请更高的并发配额？',
                         '是否有按需付费的套餐？',
                         '有没有免费试用期？',
@@ -10988,7 +11042,7 @@
                         '支持按月付费吗？',
                         '如何申请发票？'
                     ],
-                    '售后服务支持': [
+                    '售后与服务支持': [
                         '提供技术对接支持吗？',
                         '技术支持响应时间多久？',
                         '如何联系技术支持团队？',
@@ -10999,6 +11053,66 @@
                         '有产品更新通知渠道吗？',
                         '是否提供SLA保障？',
                         '支持哪些沟通方式？'
+                    ],
+                    '数据与地图精度': [
+                        '地图POI数据更新频率是多少？',
+                        '某地区地图数据明显偏差如何反馈？',
+                        '道路数据与实际不符怎么处理？',
+                        '地名/门牌号标注错误如何纠正？',
+                        '卫星图像与实际相差较大怎么办？',
+                        '偏远地区地图覆盖精度如何？',
+                        '地址解析结果不准确怎么反馈？',
+                        '历史地图数据能否获取？',
+                        '行政区划边界数据准确吗？',
+                        '特定区域能申请优先更新数据吗？'
+                    ],
+                    '合规与安全': [
+                        '使用地图数据是否需要标注来源？',
+                        '商用授权协议包含哪些限制？',
+                        '地图数据能否用于境外应用？',
+                        '用户位置数据如何合规处理？',
+                        '是否支持数据本地化部署？',
+                        '使用地图需要什么资质证明？',
+                        'API密钥泄露后如何处理？',
+                        '地图截图用于商业宣传合规吗？',
+                        '涉密区域地图使用有何限制？',
+                        '是否通过等保认证？'
+                    ],
+                    '账号与权限': [
+                        '如何创建和管理子账号？',
+                        'API Key丢失后如何找回？',
+                        '同一账号可以创建几个应用？',
+                        '如何限制API Key的调用来源？',
+                        '团队成员权限如何分级管理？',
+                        '账号被封禁后如何申诉？',
+                        '如何绑定企业实名认证？',
+                        '多个项目能否共用一个配额？',
+                        '如何查看账号下的调用明细？',
+                        '注销账号数据能否迁移？'
+                    ],
+                    '建议与需求': [
+                        '希望增加室内导航精细楼层切换功能',
+                        '建议提供更多行业专属地图模板',
+                        '希望开放更多自定义样式配置项',
+                        '建议增加路况预测功能',
+                        '希望支持更多语言的地名标注',
+                        '建议优化批量地址解析的速度',
+                        '希望增加地图截图高清导出功能',
+                        '建议提供更详细的开发者教程',
+                        '希望支持地图数据离线同步',
+                        '建议增加API调用异常自动告警'
+                    ],
+                    '其他': [
+                        '账号注册流程过于繁琐',
+                        '控制台页面加载速度慢',
+                        '文档网站搜索功能不好用',
+                        '示例代码运行环境不兼容',
+                        '控制台数据统计图表看不懂',
+                        '邮件通知内容不够清晰',
+                        '官网介绍与实际功能有出入',
+                        '套餐对比页面信息不直观',
+                        '如何参加开发者活动？',
+                        '有没有官方的技术交流群？'
                     ]
                 };
                 
@@ -11007,10 +11121,16 @@
                 
                 // 固定的提及次数数据（每个分类独立的数据）
                 const fixedValuesByCategory = {
+                    '全部': [52, 48, 45, 42, 38, 35, 30, 28, 24, 20, 16, 12],
                     '功能使用咨询': [45, 28, 25, 21, 19, 16, 12, 12, 12, 8, 7, 7, 6, 5, 3],
-                    'API与技术问题': [50, 42, 28, 26, 22, 22, 20, 19, 19, 14, 10, 6],
-                    '计费相关': [48, 44, 34, 33, 28, 26, 16, 16, 15, 12],
-                    '售后服务支持': [52, 47, 42, 37, 33, 28, 24, 20, 16, 13]
+                    'API/SDK技术问题': [50, 42, 28, 26, 22, 22, 20, 19, 19, 14, 10, 6],
+                    '计费与配额': [48, 44, 34, 33, 28, 26, 16, 16, 15, 12],
+                    '售后与服务支持': [52, 47, 42, 37, 33, 28, 24, 20, 16, 13],
+                    '数据与地图精度': [46, 38, 33, 28, 24, 20, 17, 14, 11, 8],
+                    '合规与安全': [42, 35, 29, 25, 21, 18, 15, 12, 10, 8],
+                    '账号与权限': [38, 32, 27, 23, 19, 16, 13, 10, 8, 6],
+                    '建议与需求': [36, 30, 25, 21, 18, 15, 13, 10, 8, 6],
+                    '其他': [28, 24, 20, 17, 14, 12, 10, 8, 6, 5]
                 };
                 
                 const values = fixedValuesByCategory[category] || [];
@@ -11147,26 +11267,27 @@
                 window.addEventListener('resize', () => myChart.resize());
             };
 
-            // 竞品提及次数条形图
-            const initCompetitorMentionsChart = () => {
-                const chartDom = document.getElementById('competitorMentionsChart');
+            // 流失原因条形图
+            const initChurnReasonsChart = () => {
+                const chartDom = document.getElementById('churnReasonsChart');
                 if (!chartDom) return;
                 
                 const myChart = echarts.init(chartDom);
                 
-                // 固定的竞品提及次数数据（已按次数排序）
+                // 固定的流失原因数据（已按出现次数排序）
                 const combined = [
-                    { name: '高德地图', value: 66 },
-                    { name: '腾讯地图', value: 42 },
-                    { name: '谷歌地图', value: 22 },
-                    { name: '四维图新', value: 14 },
-                    { name: '苹果地图', value: 8 },
-                    { name: '凯立德', value: 6 },
-                    { name: '搜狗地图', value: 5 }
+                    { name: '价格过高', value: 58 },
+                    { name: '转向竞品', value: 37 },
+                    { name: '预算不足', value: 32 },
+                    { name: '功能不符合需求', value: 24 },
+                    { name: '技术接入成本高', value: 14 },
+                    { name: '暂无商用计划', value: 12 },
+                    { name: '服务响应慢', value: 7 },
+                    { name: '数据精度不够', value: 3 }
                 ];
                 
                 // 因为ECharts横向条形图Y轴是从下往上的，所以需要反转数组让最大值显示在最上面
-                const sortedCompetitors = combined.map(item => item.name).reverse();
+                const sortedNames = combined.map(item => item.name).reverse();
                 const sortedValues = combined.map(item => item.value).reverse();
                 
                 const option = {
@@ -11175,7 +11296,7 @@
                         axisPointer: {
                             type: 'shadow'
                         },
-                        formatter: '{b}<br/>提及次数: {c}次'
+                        formatter: '{b}<br/>出现次数: {c}次'
                     },
                     grid: {
                         left: '3%',
@@ -11194,7 +11315,7 @@
                     },
                     yAxis: {
                         type: 'category',
-                        data: sortedCompetitors,
+                        data: sortedNames,
                         axisLabel: {
                             fontSize: 13,
                             interval: 0,
@@ -11209,7 +11330,7 @@
                     },
                     series: [
                         {
-                            name: '提及次数',
+                            name: '出现次数',
                             type: 'bar',
                             data: sortedValues,
                             itemStyle: {
@@ -11236,6 +11357,73 @@
                                         { offset: 1, color: '#9254de' }
                                     ])
                                 }
+                            }
+                        }
+                    ]
+                };
+                
+                myChart.setOption(option);
+                window.addEventListener('resize', () => myChart.resize());
+            };
+
+            // 流失去向桑基图
+            const initLossFlowChart = () => {
+                const chartDom = document.getElementById('lossFlowChart');
+                if (!chartDom) return;
+                
+                const myChart = echarts.init(chartDom);
+                
+                const option = {
+                    tooltip: {
+                        trigger: 'item',
+                        triggerOn: 'mousemove',
+                        formatter: (params) => {
+                            if (params.dataType === 'edge') {
+                                return `${params.data.source} → ${params.data.target}<br/>流失用户: <b>${params.data.value}</b> 人`;
+                            }
+                            return `${params.name}: <b>${params.value || 0}</b> 人`;
+                        }
+                    },
+                    series: [
+                        {
+                            type: 'sankey',
+                            layout: 'none',
+                            left: '5%',
+                            right: '20%',
+                            top: '5%',
+                            bottom: '5%',
+                            nodeWidth: 20,
+                            nodeGap: 12,
+                            emphasis: {
+                                focus: 'adjacency'
+                            },
+                            data: [
+                                { name: '百度地图流失用户', itemStyle: { color: '#1890ff' } },
+                                { name: '高德地图', itemStyle: { color: '#52c41a' } },
+                                { name: '腾讯地图', itemStyle: { color: '#fa8c16' } },
+                                { name: '谷歌地图', itemStyle: { color: '#eb2f96' } },
+                                { name: '苹果地图', itemStyle: { color: '#722ed1' } },
+                                { name: '四维图新', itemStyle: { color: '#13c2c2' } },
+                                { name: '其他地图产品', itemStyle: { color: '#bfbfbf' } }
+                            ],
+                            links: [
+                                { source: '百度地图流失用户', target: '高德地图', value: 66 },
+                                { source: '百度地图流失用户', target: '腾讯地图', value: 42 },
+                                { source: '百度地图流失用户', target: '谷歌地图', value: 22 },
+                                { source: '百度地图流失用户', target: '苹果地图', value: 14 },
+                                { source: '百度地图流失用户', target: '四维图新', value: 10 },
+                                { source: '百度地图流失用户', target: '其他地图产品', value: 8 }
+                            ],
+                            lineStyle: {
+                                color: 'gradient',
+                                opacity: 0.4,
+                                curveness: 0.5
+                            },
+                            label: {
+                                position: 'right',
+                                fontSize: 12,
+                                color: '#595959',
+                                formatter: '{b}: {c}'
                             }
                         }
                     ]
@@ -11418,8 +11606,9 @@
                 const container = document.getElementById('scenarioFeedback');
                 if (!container) return;
                 
-                // 15个应用场景
+                // 16个应用场景（全部 + 15个场景）
                 const scenarios = [
+                    '全部',
                     '物流配送路线规划',
                     '共享单车位置追踪',
                     '外卖配送实时导航',
@@ -11439,6 +11628,13 @@
                 
                 // 每个场景对应的正面反馈数据
                 const scenarioPositiveFeedbacks = {
+                    '全部': [
+                        { name: '路径优化算法智能', value: 46 },
+                        { name: '定位精准无漂移', value: 40 },
+                        { name: '实时路况响应快', value: 34 },
+                        { name: '地图数据覆盖全面', value: 28 },
+                        { name: 'API接口稳定易用', value: 23 }
+                    ],
                     '物流配送路线规划': [
                         { name: '路径优化算法智能', value: 46 },
                         { name: '配送时效预估准确', value: 39 },
@@ -11548,6 +11744,14 @@
                 
                 // 每个场景对应的负面反馈数据
                 const scenarioFeedbacks = {
+                    '全部': [
+                        { name: '路径规划偶有绕路', value: 32 },
+                        { name: '定位精度有待提升', value: 26 },
+                        { name: '实时路况更新滞后', value: 20 },
+                        { name: '地图数据更新不及时', value: 17 },
+                        { name: '缺少行业专属功能', value: 14 },
+                        { name: 'API并发限制偏低', value: 11 }
+                    ],
                     '物流配送路线规划': [
                         { name: '路径优化算法不够智能', value: 32 },
                         { name: '配送时效预估不准', value: 27 },
@@ -11685,8 +11889,8 @@
                     ]
                 };
                 
-                // 初始状态：选中第一个场景
-                let selectedScenario = scenarios[0];
+                // 初始状态：选中"全部"
+                let selectedScenario = '全部';
                 let scrollPositions = {}; // 保存每个场景的滚动位置
                 
                 // 渲染函数
@@ -11893,85 +12097,80 @@
                 document.head.appendChild(style);
             };
 
-            // 应用场景 Top 10 条形图 - 固定数据
+            // 应用场景 Top 10 饼图 - 固定数据
             const initScenarioBarChart = () => {
                 const chartDom = document.getElementById('scenarioBarChart');
                 if (!chartDom) return;
                 
                 const myChart = echarts.init(chartDom);
                 
-                // 固定数据（已按值从高到低排序）
-                const combined = [
-                    { name: '物流配送路线规划', value: 85 },
-                    { name: '外卖配送实时导航', value: 82 },
-                    { name: '网约车乘客定位', value: 66 },
-                    { name: '共享单车位置追踪', value: 65 },
-                    { name: '快递末端配送优化', value: 58 },
-                    { name: '智慧停车场导引', value: 52 },
-                    { name: '景区游览路线推荐', value: 45 },
-                    { name: '园区内部导航服务', value: 30 },
-                    { name: '商场室内定位导购', value: 22 },
-                    { name: '企业资产位置管理', value: 18 }
-                ];
+                const colors = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#5d7092'];
                 
-                // 因为ECharts横向条形图Y轴是从下往上的，所以需要反转数组让最大值显示在最上面
-                const sortedScenarios = combined.map(item => item.name).reverse();
-                const sortedValues = combined.map(item => item.value).reverse();
+                // 固定数据（已按值从高到低排序，"其他"固定置底）
+                const data = [
+                    { name: '物流配送路线规划', value: 18, itemStyle: { color: colors[0] } },
+                    { name: '外卖配送实时导航', value: 16, itemStyle: { color: colors[1] } },
+                    { name: '网约车乘客定位', value: 13, itemStyle: { color: colors[2] } },
+                    { name: '共享单车位置追踪', value: 12, itemStyle: { color: colors[3] } },
+                    { name: '快递末端配送优化', value: 10, itemStyle: { color: colors[4] } },
+                    { name: '智慧停车场导引', value: 9, itemStyle: { color: colors[5] } },
+                    { name: '景区游览路线推荐', value: 8, itemStyle: { color: colors[6] } },
+                    { name: '园区内部导航服务', value: 5, itemStyle: { color: colors[7] } },
+                    { name: '商场室内定位导购', value: 4, itemStyle: { color: colors[8] } },
+                    { name: '企业资产位置管理', value: 3, itemStyle: { color: colors[9] } },
+                    { name: '其他', value: 12, itemStyle: { color: '#bfbfbf' } }
+                ];
                 
                 const option = {
                     tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'shadow'
-                        },
-                        formatter: '{b}: {c}次'
+                        trigger: 'item',
+                        formatter: '{b}: {c}% ({d}%)'
                     },
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
-                    },
-                    xAxis: {
-                        type: 'value',
-                        boundaryGap: [0, 0.01],
-                        axisLabel: {
-                            fontSize: 11
-                        }
-                    },
-                    yAxis: {
-                        type: 'category',
-                        data: sortedScenarios,
-                        axisLabel: {
-                            fontSize: 11,
-                            interval: 0
+                    legend: {
+                        orient: 'vertical',
+                        right: '5%',
+                        top: 'center',
+                        textStyle: {
+                            fontSize: 12
                         }
                     },
                     series: [
                         {
-                            name: '提及次数',
-                            type: 'bar',
-                            data: sortedValues,
+                            name: '应用场景 Top 10',
+                            type: 'pie',
+                            radius: ['45%', '70%'],
+                            center: ['35%', '50%'],
+                            avoidLabelOverlap: true,
                             itemStyle: {
-                                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                                    { offset: 0, color: '#1890ff' },
-                                    { offset: 1, color: '#36cfc9' }
-                                ])
+                                borderRadius: 8,
+                                borderColor: '#fff',
+                                borderWidth: 2
                             },
-                            barWidth: '60%',
                             label: {
                                 show: true,
-                                position: 'right',
-                                formatter: '{c}',
+                                formatter: '{b}\n{c}\n({d}%)',
                                 fontSize: 11,
-                                color: '#666'
-                            }
+                                color: '#666',
+                                lineHeight: 16
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                    fontSize: 14,
+                                    fontWeight: 'bold'
+                                }
+                            },
+                            labelLine: {
+                                show: true,
+                                length: 15,
+                                length2: 8
+                            },
+                            data: data
                         }
                     ]
                 };
                 myChart.setOption(option);
                 
-                // 响应式调整
                 window.addEventListener('resize', () => myChart.resize());
             };
             
@@ -12969,6 +13168,19 @@
                     {/* 统计选项卡内容 - 外呼统计 */}
                     {activeTab === 'statistics' && (
                         <div style={{ padding: '16px 0' }}>
+                            {/* AI提示信息 - 移到筛选栏上面 */}
+                            <div style={{ 
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                marginBottom: '16px',
+                                fontSize: '13px',
+                                color: '#8c8c8c'
+                            }}>
+                                <i data-lucide="info" style={{ width: '14px', height: '14px' }}></i>
+                                <span>统计结论由AI总结生成，当日数据将在次日生成。</span>
+                            </div>
+
                             {/* 筛选组件 */}
                             <div style={{ 
                                 background: '#fff',
@@ -12988,19 +13200,6 @@
                                         format="YYYY-MM-DD"
                                     />
                                 </div>
-                            </div>
-
-                            {/* AI提示信息 */}
-                            <div style={{ 
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '6px',
-                                marginBottom: '20px',
-                                fontSize: '13px',
-                                color: '#8c8c8c'
-                            }}>
-                                <i data-lucide="info" style={{ width: '14px', height: '14px' }}></i>
-                                <span>统计结论由AI总结生成，当日数据将在次日生成。</span>
                             </div>
 
                             {/* 行业与场景统计 */}
@@ -13043,7 +13242,7 @@
                                 <h3 style={{ fontSize: '16px', fontWeight: 500, marginBottom: '16px', color: '#262626' }}>用户问题统计</h3>
                                 <div style={{ background: '#fff', padding: '16px', borderRadius: '8px', border: '1px solid #f0f0f0', height: '400px', display: 'flex', gap: '16px' }}>
                                     {/* 左侧问题分类列表 */}
-                                    <div style={{ width: '200px', flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
+                                    <div style={{ width: '250px', flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
                                         <h4 style={{ fontSize: '14px', fontWeight: 500, marginBottom: '12px', color: '#595959' }}>问题分类</h4>
                                         <div style={{ 
                                             flex: 1, 
@@ -13053,10 +13252,16 @@
                                             borderRadius: '4px'
                                         }}>
                                             {[
+                                                { key: '全部', count: 47 },
                                                 { key: '功能使用咨询', count: 15 },
                                                 { key: 'API与技术问题', count: 12 },
-                                                { key: '计费相关', count: 10 },
-                                                { key: '售后服务支持', count: 10 }
+                                                { key: '计费与配额', count: 10 },
+                                                { key: '售后与服务支持', count: 10 },
+                                                { key: '数据与地图精度', count: 10 },
+                                                { key: '合规与安全', count: 10 },
+                                                { key: '账号与权限', count: 10 },
+                                                { key: '建议与需求', count: 10 },
+                                                { key: '其他', count: 10 }
                                             ].map(category => (
                                                 <div
                                                     key={category.key}
@@ -13118,14 +13323,20 @@
                                 </div>
                             </div>
 
-                            {/* 竞品信息统计 */}
+                            {/* 竞品与流失统计 */}
                             <div style={{ marginBottom: '24px' }}>
-                                <h3 style={{ fontSize: '16px', fontWeight: 500, marginBottom: '16px', color: '#262626' }}>竞品信息统计</h3>
-                                <div style={{ display: 'grid', gridTemplateColumns: '450px 1fr', gap: '16px' }}>
-                                    {/* 竞品提及次数 */}
+                                <h3 style={{ fontSize: '16px', fontWeight: 500, marginBottom: '16px', color: '#262626' }}>竞品与流失统计</h3>
+                                <div style={{ display: 'grid', gridTemplateColumns: '3fr 3fr 4fr', gap: '16px' }}>
+                                    {/* 流失原因 */}
                                     <div style={{ background: '#fff', padding: '16px', borderRadius: '8px', border: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column', height: '400px' }}>
-                                        <h4 style={{ fontSize: '14px', fontWeight: 500, marginBottom: '12px', color: '#595959', flexShrink: 0 }}>竞品提及次数</h4>
-                                        <div id="competitorMentionsChart" style={{ width: '100%', flex: 1, minHeight: 0 }}></div>
+                                        <h4 style={{ fontSize: '14px', fontWeight: 500, marginBottom: '12px', color: '#595959', flexShrink: 0 }}>流失原因</h4>
+                                        <div id="churnReasonsChart" style={{ width: '100%', flex: 1, minHeight: 0 }}></div>
+                                    </div>
+
+                                    {/* 流失去向 */}
+                                    <div style={{ background: '#fff', padding: '16px', borderRadius: '8px', border: '1px solid #f0f0f0', display: 'flex', flexDirection: 'column', height: '400px' }}>
+                                        <h4 style={{ fontSize: '14px', fontWeight: 500, marginBottom: '12px', color: '#595959', flexShrink: 0 }}>流失去向</h4>
+                                        <div id="lossFlowChart" style={{ width: '100%', flex: 1, minHeight: 0 }}></div>
                                     </div>
                                     
                                     {/* 竞品对比分析 */}
@@ -13460,69 +13671,91 @@
                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>是否再次回电</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.callAgain || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.callAgain ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.callAgain}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>业务应用场景</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.businessScene || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.businessScene ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.businessScene}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>整体意向</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.overallIntent || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.overallIntent ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.overallIntent}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>竞品情况</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.competitorInfo || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.competitorInfo ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.competitorInfo}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>正面评价</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.positiveFeedback || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.positiveFeedback ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.positiveFeedback}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>负面评价</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.negativeFeedback || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.negativeFeedback ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.negativeFeedback}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>持续调用的原因</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.continueReason || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.continueReason ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.continueReason}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>项目情况</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.projectStatus || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.projectStatus ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.projectStatus}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>未申请商用授权原因</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.noCommercialReason || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.noCommercialReason ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.noCommercialReason}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>行业</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.industry || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.industry ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.industry}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                                 <span style={{ color: '#8c8c8c', fontSize: '13px' }}>客户采购预算</span>
-                                                                <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>
-                                                                    {currentDetailRecord.aiTags?.budget || '未获取'}
-                                                                </span>
+                                                                {currentDetailRecord.aiTags?.budget ? (
+                                                                        <span style={{ color: '#262626', fontSize: '13px', marginLeft: '10px' }}>{currentDetailRecord.aiTags?.budget}</span>
+                                                                    ) : (
+                                                                        <span style={{ color: '#8c8c8c', fontStyle: 'italic', fontSize: '13px', marginLeft: '10px' }}>未获取</span>
+                                                                    )}
                                                             </div>
                                                         </div>
                                                     ) : (
