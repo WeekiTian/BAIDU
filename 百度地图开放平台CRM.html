@@ -11274,16 +11274,16 @@
                 
                 const myChart = echarts.init(chartDom);
                 
-                // 固定的流失原因数据（已按出现次数排序）
+                // 固定的流失原因分类数据（已按出现次数排序）
                 const combined = [
-                    { name: '价格过高', value: 58 },
-                    { name: '转向竞品', value: 37 },
-                    { name: '预算不足', value: 32 },
-                    { name: '功能不符合需求', value: 24 },
-                    { name: '技术接入成本高', value: 14 },
-                    { name: '暂无商用计划', value: 12 },
-                    { name: '服务响应慢', value: 7 },
-                    { name: '数据精度不够', value: 3 }
+                    { name: '价格因素', value: 63 },
+                    { name: '产品功能或场景不足', value: 48 },
+                    { name: '竞争对手因素', value: 37 },
+                    { name: '业务调整或停止', value: 29 },
+                    { name: '技术稳定性问题', value: 21 },
+                    { name: '售后与服务质量问题', value: 15 },
+                    { name: '合规或政策限制', value: 9 },
+                    { name: '其他/未知', value: 6 }
                 ];
                 
                 // 因为ECharts横向条形图Y轴是从下往上的，所以需要反转数组让最大值显示在最上面
@@ -11401,18 +11401,20 @@
                                 { name: '百度地图流失用户', itemStyle: { color: '#1890ff' } },
                                 { name: '高德地图', itemStyle: { color: '#52c41a' } },
                                 { name: '腾讯地图', itemStyle: { color: '#fa8c16' } },
-                                { name: '谷歌地图', itemStyle: { color: '#eb2f96' } },
-                                { name: '苹果地图', itemStyle: { color: '#722ed1' } },
+                                { name: '天地图', itemStyle: { color: '#722ed1' } },
+                                { name: '凯立德', itemStyle: { color: '#f5222d' } },
                                 { name: '四维图新', itemStyle: { color: '#13c2c2' } },
+                                { name: '谷歌地图', itemStyle: { color: '#eb2f96' } },
                                 { name: '其他地图产品', itemStyle: { color: '#bfbfbf' } }
                             ],
                             links: [
                                 { source: '百度地图流失用户', target: '高德地图', value: 66 },
                                 { source: '百度地图流失用户', target: '腾讯地图', value: 42 },
-                                { source: '百度地图流失用户', target: '谷歌地图', value: 22 },
-                                { source: '百度地图流失用户', target: '苹果地图', value: 14 },
+                                { source: '百度地图流失用户', target: '天地图', value: 18 },
+                                { source: '百度地图流失用户', target: '凯立德', value: 12 },
                                 { source: '百度地图流失用户', target: '四维图新', value: 10 },
-                                { source: '百度地图流失用户', target: '其他地图产品', value: 8 }
+                                { source: '百度地图流失用户', target: '谷歌地图', value: 7 },
+                                { source: '百度地图流失用户', target: '其他地图产品', value: 5 }
                             ],
                             lineStyle: {
                                 color: 'gradient',
@@ -11442,22 +11444,38 @@
                 const comparisons = [
                     {
                         competitor: '高德地图',
-                        advantages: ['导航语音播报更人性化', '实时路况更新速度快', '避堵路线规划效果好'],
+                        advantages: [
+                            { text: '导航语音播报更人性化', count: 38 },
+                            { text: '实时路况更新速度快' },
+                            { text: '避堵路线规划效果好' }
+                        ],
                         baiduWeakness: ['未提到']
                     },
                     {
                         competitor: '腾讯地图',
-                        advantages: ['与微信生态深度集成', '街景数据覆盖广', '地点搜索结果丰富'],
-                        baiduWeakness: ['与其他社交平台集成较弱']
+                        advantages: [
+                            { text: '与微信生态深度集成', count: 24 },
+                            { text: '街景数据覆盖广' },
+                            { text: '地点搜索结果丰富' }
+                        ],
+                        baiduWeakness: ['与微信生态社交平台集成较弱']
                     },
                     {
                         competitor: '四维图新',
-                        advantages: ['车载导航数据更新及时', '与汽车厂商合作深入', '车规级地图数据质量高'],
+                        advantages: [
+                            { text: '车载导航数据更新及时', count: 13 },
+                            { text: '与汽车厂商合作深入' },
+                            { text: '车规级地图数据质量高' }
+                        ],
                         baiduWeakness: ['车载导航市场份额较小']
                     },
                     {
                         competitor: '凯立德',
-                        advantages: ['离线地图包体积小', '导航算路速度快', '在三四线城市数据完善'],
+                        advantages: [
+                            { text: '离线地图包体积小', count: 10 },
+                            { text: '导航算路速度快' },
+                            { text: '在三四线城市数据完善' }
+                        ],
                         baiduWeakness: ['未提到']
                     }
                 ];
@@ -11522,7 +11540,7 @@
                                             font-size: 13px;
                                             font-weight: 500;
                                             color: #52c41a;
-                                        ">竞品优势</span>
+                                        ">相对优势</span>
                                     </div>
                                     <ul style="
                                         margin: 0;
@@ -11546,7 +11564,19 @@
                                                     background: #52c41a;
                                                     border-radius: 50%;
                                                 "></span>
-                                                ${adv}
+                                                ${adv.text}${adv.count ? `<span style="
+                                                    display: inline-block;
+                                                    margin-left: 5px;
+                                                    font-size: 11px;
+                                                    color: #52c41a;
+                                                    background: #f6ffed;
+                                                    border: 1px solid #b7eb8f;
+                                                    border-radius: 10px;
+                                                    padding: 0 6px;
+                                                    line-height: 17px;
+                                                    font-weight: 500;
+                                                    vertical-align: middle;
+                                                ">${adv.count}次</span>` : ''}
                                             </li>
                                         `).join('')}
                                     </ul>
@@ -11565,7 +11595,7 @@
                                                 font-size: 13px;
                                                 font-weight: 500;
                                                 color: #ff4d4f;
-                                            ">百度地图相对劣势</span>
+                                            ">相对劣势</span>
                                         </div>
                                         <ul style="
                                             margin: 0;
